@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run golang-chat",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}/server/main.go",
+            "cwd": "${workspaceFolder}",
+            "serverReadyAction":{
+                "action": "openExternally",
+                "pattern": "listening on port :([0-9]+)",
+                "uriFormat": "https://localhost:%s",
+                
+                "killOnServerStop": false
+            }
+        }
+    ]
+}
