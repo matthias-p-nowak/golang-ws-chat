@@ -1,0 +1,50 @@
+body {
+    background-color: antiquewhite;
+}
+
+
+header {
+
+    .notifications {
+        width: fit-content;
+        margin-left: 50%;
+        transform: translate(-50%, 0);
+        // margin-right: auto;
+        // border: thin solid orange;
+        top: 0.5rem;
+        border-radius: 0.5rem;
+        position: fixed;
+        // width: calc( 100% - 2rem );
+        display: none;
+
+        &:has(li) {
+            box-shadow: 0 0 0.5rem 0.5rem rgba(255, 198, 134, 0.268);
+            padding-left: 1rem;
+            padding-right: 1rem;
+            top: 0.5rem;
+            display: block;
+            background-color: white;
+            z-index: 1000;
+        }
+
+        .infos {
+            // border: thin solid green;
+            color: blue;
+        }
+
+        .errors {
+            // border: thin solid red;
+            color: red;
+        }
+    }
+
+    .top-clock {
+        border: thin solid antiquewhite;
+        width: fit-content;
+        position: fixed;
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+    }
+}

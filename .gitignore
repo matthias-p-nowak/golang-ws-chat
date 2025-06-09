@@ -7,3 +7,5 @@ go.work.sum
 
 secrets/
 *.code-workspace
+web/*
+!web/index.html

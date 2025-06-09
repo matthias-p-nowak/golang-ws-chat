@@ -6,14 +6,31 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "${workspaceFolder}/server/main.go",
             "cwd": "${workspaceFolder}",
-            "serverReadyAction":{
+            "program": "${workspaceFolder}/src",
+            "args": [
+                "config.ini"
+            ],
+            "serverReadyAction": {
                 "action": "openExternally",
                 "pattern": "listening on port :([0-9]+)",
-                "uriFormat": "https://localhost:%s",
-                
-                "killOnServerStop": false
+                "uriFormat": "https://localhost:%s"
+                // "killOnServerStop": false
+            },
+        },
+        {
+            "name": "debug app firefox",
+            "type": "firefox",
+            "request": "attach",
+            "url": "https://127.0.0.1:5500/web/index.html",
+            "pathMappings": [
+                {
+                    "url": "https://127.0.0.1:5500/",
+                    "path": "${workspaceFolder}/"
+                }
+            ],
+            "linux": {
+                "preLaunchTask": "firefox-devel"
             }
         }
     ]

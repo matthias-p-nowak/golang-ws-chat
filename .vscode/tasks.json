@@ -1,0 +1,75 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile typescript",
+            "type": "shell",
+            "command": "esbuild",
+            "args": [
+                "src/ts/*.ts",
+                "--outdir=web",
+                "--sourcemap",
+                "--watch",
+                "--log-level=verbose"
+            ],
+            "problemMatcher": [
+                "$tsc-watch"
+            ],
+            "isBackground": true,
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            }
+        },
+        {
+            "label": "compile css",
+            "type": "shell",
+            "command": "sass",
+            "args": [
+                "-w",
+                "src/scss/main.scss",
+                "web/main.css"
+            ],
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "isBackground": true
+        },
+        {
+            "label": "all tasks",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": [
+                "compile css",
+                "compile typescript"
+            ],
+            "dependsOrder": "parallel",
+            "problemMatcher": []
+        },
+        {
+            "label": "firefox-devel",
+            "type": "shell",
+            "command": "firefox",
+            "args": [
+                "-P",
+                "devel",
+                "http://127.0.0.1:8000/",
+                "--start-debugger-server"
+            ],
+            "problemMatcher": [],
+            "isBackground": true
+        },
+    ]
+}

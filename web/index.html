@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go and chat</title>
+    <link rel="shortcut icon" type="image/x-icon" href="logo.ico" />
+    <link rel="stylesheet" href="main.css" />
+    <script>
+        window.wsURL = 'ws://127.0.0.1:8000/ws';
+    </script>
+    <script type="module" src="starter.js"></script>
+</head>
+
+<body id="body">
+    <header>
+        <div class="top-clock"><span id="aliveClock">offline</span></div>
+        <div class="notifications">
+            <h1>Messages</h1>
+            <ul class="infos">
+            </ul>
+        </div>
+    </header>
+</body>
+
+</html>
