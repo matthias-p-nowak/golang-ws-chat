@@ -1,8 +1,10 @@
 package main
 
 import (
+	"embed"
 	"encoding/json"
 	"fmt"
+	"io/fs"
 
 	"net/http"
 	"os"
@@ -14,26 +16,9 @@ import (
 )
 
 var (
-	// the root directory of the web content
-	webroot string
+	//go:embed web/*
+	webFS embed.FS
 )
-
-// the default serving of files for the webchat
-func fileServe(w http.ResponseWriter, r *http.Request) {
-	path := r.URL.Path[1:]
-	if len(path) > 0 && (path[0] == '/' || path[0] == '.' || strings.Contains(path, "..")) {
-		http.Error(w, "Invalid path", http.StatusBadRequest)
-		log.Log("invalid path" + path)
-		return
-	}
-	if path == "" {
-		path = "index.html"
-	}
-	// the file to load and transfer
-	file := "./" + webroot + "/" + path
-	http.ServeFile(w, r, file)
-	log.Log("served file " + file)
-}
 
 func syncHandler(ws *websocket.Conn) {
 	defer ws.Close()
@@ -69,10 +54,11 @@ func main() {
 		fmt.Printf("Failed to read file: %v\n", err)
 		os.Exit(1)
 	}
-	webroot = cfg.Section("server").Key("webroot").String()
+	// webroot = cfg.Section("server").Key("webroot").String()
 	serverAddress := cfg.Section("server").Key("address").String()
-	http.HandleFunc("/", fileServe)
+	// http.HandleFunc("/", fileServe)
+	serverRoot, err := fs.Sub(webFS, "web")
+	http.Handle("/", http.FileServer(http.FS(serverRoot)))
 	http.HandleFunc("/ws", handleWs)
 	http.ListenAndServe(serverAddress, nil)
-
 }

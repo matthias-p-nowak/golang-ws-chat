@@ -1,0 +1,2 @@
+- use embed for the web part
+- decide on templ or http/template 

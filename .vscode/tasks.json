@@ -7,7 +7,7 @@
             "command": "esbuild",
             "args": [
                 "src/ts/*.ts",
-                "--outdir=web",
+                "--outdir=src/web",
                 "--sourcemap",
                 "--watch",
                 "--log-level=verbose"
@@ -32,7 +32,7 @@
             "args": [
                 "-w",
                 "src/scss/main.scss",
-                "web/main.css"
+                "src/web/main.css"
             ],
             "problemMatcher": [],
             "presentation": {
